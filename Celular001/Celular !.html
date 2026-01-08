@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iPhone Virtual - Ajustes</title>
+  <style>
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial; }
+    body { background:#222; display:flex; justify-content:center; align-items:center; height:100vh; }
+
+    .iphone {
+      width:360px; height:740px; background:#000; border-radius:40px; padding:14px; box-shadow:0 0 30px #000;
+    }
+
+    .screen {
+      background:#f2f2f7; width:100%; height:100%; border-radius:28px; overflow:hidden; display:flex; flex-direction:column;
+    }
+
+    .topbar {
+      background:#fff; padding:14px; font-weight:600; text-align:center; border-bottom:1px solid #ddd;
+    }
+
+    .content { flex:1; overflow-y:auto; }
+
+    .section { margin-top:14px; background:#fff; border-top:1px solid #ddd; border-bottom:1px solid #ddd; }
+
+    .item {
+      padding:12px 16px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; cursor:pointer;
+    }
+
+    .item:last-child { border-bottom:none; }
+
+    .item span { color:#555; font-size:14px; }
+
+    .toggle { width:42px; height:24px; background:#ccc; border-radius:20px; position:relative; }
+    .toggle::after { content:''; width:20px; height:20px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition:.2s; }
+    .toggle.on { background:#34c759; }
+    .toggle.on::after { left:20px; }
+
+    .hidden { display:none; }
+
+    .back { color:#007aff; cursor:pointer; font-size:14px; }
+
+  </style>
+</head>
+<body>
+
+<div class="iphone">
+  <div class="screen">
+
+    <div class="topbar" id="title">Ajustes</div>
+
+    <div class="content">
+
+      <!-- HOME AJUSTES -->
+      <div id="home">
+
+        <div class="section">
+          <div class="item" onclick="openPage('conexoes')">📶 Conexões</div>
+          <div class="item" onclick="openPage('sons')">🔔 Sons e Vibração</div>
+          <div class="item" onclick="openPage('tela')">🌙 Tela e Brilho</div>
+          <div class="item" onclick="openPage('seguranca')">🔐 Face ID e Código</div>
+          <div class="item" onclick="openPage('icloud')">☁️ ID Apple / iCloud</div>
+          <div class="item" onclick="openPage('privacidade')">🧠 Privacidade</div>
+          <div class="item" onclick="openPage('bateria')">🔋 Bateria</div>
+          <div class="item" onclick="openPage('tempo')">⏱️ Tempo de Uso</div>
+          <div class="item" onclick="openPage('acessibilidade')">♿ Acessibilidade</div>
+          <div class="item" onclick="openPage('geral')">⚙️ Geral</div>
+        </div>
+
+      </div>
+
+      <!-- CONEXÕES -->
+      <div id="conexoes" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Modo Avião <div class="toggle" onclick="toggle(this)"></div></div>
+          <div class="item">Wi‑Fi <span>Conectado</span></div>
+          <div class="item">Bluetooth <span>Ativo</span></div>
+          <div class="item">Dados Celulares</div>
+          <div class="item">Hotspot Pessoal</div>
+        </div>
+      </div>
+
+      <!-- SONS -->
+      <div id="sons" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Volume de Toque</div>
+          <div class="item">Toque</div>
+          <div class="item">Som de Mensagem</div>
+          <div class="item">Vibração</div>
+          <div class="item">Sons do Sistema</div>
+        </div>
+      </div>
+
+      <!-- TELA -->
+      <div id="tela" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Modo Escuro <div class="toggle" onclick="toggleDark(this)"></div></div>
+          <div class="item">Night Shift</div>
+          <div class="item">True Tone</div>
+          <div class="item">Bloqueio Automático</div>
+          <div class="item">Tamanho do Texto</div>
+        </div>
+      </div>
+
+      <!-- SEGURANÇA -->
+      <div id="seguranca" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Alterar Código</div>
+          <div class="item">Face ID</div>
+          <div class="item">Apagar Dados</div>
+        </div>
+      </div>
+
+      <!-- ICLOUD -->
+      <div id="icloud" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">iCloud</div>
+          <div class="item">Backup do iCloud</div>
+          <div class="item">Buscar iPhone</div>
+          <div class="item">Senhas e Chaves</div>
+        </div>
+      </div>
+
+      <!-- PRIVACIDADE -->
+      <div id="privacidade" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Localização</div>
+          <div class="item">Fotos</div>
+          <div class="item">Câmera</div>
+          <div class="item">Microfone</div>
+          <div class="item">Rastreamento</div>
+        </div>
+      </div>
+
+      <!-- BATERIA -->
+      <div id="bateria" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Saúde da Bateria</div>
+          <div class="item">Carregamento Otimizado</div>
+          <div class="item">Modo Pouca Energia <div class="toggle" onclick="toggle(this)"></div></div>
+        </div>
+      </div>
+
+      <!-- TEMPO DE USO -->
+      <div id="tempo" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Relatório de Uso</div>
+          <div class="item">Limites de Apps</div>
+          <div class="item">Conteúdo e Privacidade</div>
+        </div>
+      </div>
+
+      <!-- ACESSIBILIDADE -->
+      <div id="acessibilidade" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">VoiceOver</div>
+          <div class="item">Zoom</div>
+          <div class="item">AssistiveTouch</div>
+          <div class="item">Legendas</div>
+        </div>
+      </div>
+
+      <!-- GERAL -->
+      <div id="geral" class="hidden">
+        <div class="item back" onclick="goHome()">⬅ Voltar</div>
+        <div class="section">
+          <div class="item">Sobre</div>
+          <div class="item">Atualização de Software</div>
+          <div class="item">Armazenamento do iPhone</div>
+          <div class="item">Data e Hora</div>
+          <div class="item">Redefinir</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function openPage(id){
+    document.getElementById('title').innerText = document.getElementById(id).id.charAt(0).toUpperCase() + id.slice(1);
+    document.querySelectorAll('.content > div').forEach(d => d.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function goHome(){
+    document.getElementById('title').innerText = 'Ajustes';
+    document.querySelectorAll('.content > div').forEach(d => d.classList.add('hidden'));
+    document.getElementById('home').classList.remove('hidden');
+  }
+
+  function toggle(el){
+    el.classList.toggle('on');
+  }
+
+  function toggleDark(el){
+    el.classList.toggle('on');
+    document.querySelector('.screen').style.background = el.classList.contains('on') ? '#1c1c1e' : '#f2f2f7';
+  }
+</script>
+
+</body>
+</html>
